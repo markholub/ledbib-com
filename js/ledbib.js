@@ -54,16 +54,23 @@ function drawRings(rings, segments) {
 
 }
 
-window.onload = function() { init() };
-
 const url = 'https://docs.google.com/spreadsheets/d/1vSDKHJxiHHFtiC67EBUjIazqPAYpdORO6iDq6PPBHpE/pubhtml'
 
-function init() {
+$('document').ready(function() {
+  var options = { videoId: 'deuhXlqHB9I', start: 0 };
+  $('#wrapper').tubular(options);
+
   Tabletop.init( { key: url,
                    callback: showInfo,
                    simpleSheet: false } )
-}
+
+})
+
 
 function showInfo(data, tabletop) {
   drawRings(data.rings.elements, data.segments.elements)
+
+  window.data = data
+  console.log('data', data)
+
 }

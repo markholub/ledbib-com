@@ -1,0 +1,45 @@
+body, html {
+    margin: 0px;
+    padding: 0px;
+    background-color: black;
+    font-family: Times;
+    font-weight: bold;
+}
+
+#wrapper {
+    height: 100%;
+    width: 100%;
+}
+
+#main {
+    width: 570px;
+    height: 570px;
+    background-size: 570px 570px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    top: calc(50% - 285px);
+    color: black;
+    overflow: hidden;
+    perspective: 1000px;
+    perspective-origin: 40% 50px;
+}
+
+circle {
+  stroke: white;
+  fill: transparent;
+}
+
+path {
+  stroke: white;
+  fill: transparent;
+}
+
+text, text a {
+  font-family: TexGyrScholaRegular;
+  fill: white;
+}
+
+text a:hover {
+  fill: black;
+}
