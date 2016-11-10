@@ -3,98 +3,9 @@
     <script src="tabletop.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.8/d3.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" type="text/javascript"></script>
-<!--     <script>
 
-const rings = [
-  {
-    id : 1,
-    fontSize : '14px',
-    radius : 100
-  },
-  {
-    id : 2,
-    fontSize : '20px',
-    radius : 130
-  },
-  {
-    id : 3,
-    fontSize : '14px',
-    radius : 170
-  }
-  ]
+<!-- full screen video : https://www.youtube.com/watch?v=deuhXlqHB9I -->
 
-const segments = [
-  {
-    ring : 2,
-    text : 'LIVE',
-    startAngle : -40,
-    endAngle : 40
-  },
-  {
-    ring : 2,
-    text : 'ABOUT',
-    startAngle : 40,
-    endAngle : 70
-  },
-  {
-    ring : 2,
-    text : 'PRESS',
-    startAngle : 90,
-    endAngle : 140
-  },
-  {
-    ring : 2,
-    text : 'LISTEN',
-    startAngle : 140,
-    endAngle : 190
-  },
-  {
-    ring : 2,
-    text : 'WATCH',
-    startAngle : 190,
-    endAngle : 250
-  },
-  {
-    ring : 2,
-    text : 'MAILING LIST',
-    startAngle : 250,
-    endAngle : 320
-  },
-  {
-    ring : 1,
-    text : 'CONTACT',
-    startAngle : 0,
-    endAngle : 60
-  },
-  {
-    ring : 1,
-    text : 'FACEBOOK',
-    startAngle : 60,
-    endAngle : 120
-  }
-]
-
-</script> -->
-<script>
-
-/*
-Returns a path in the SVG path mini language, given
-a radius
-
-e.g. M -100 0 A 100 100 0 1 1 100 0 A 100 100 0 1 1 -100 0 (for radius == 100)
-
-*/
-function circularPath(radius) {
-  const r = radius
-  return `M -${r} 0 A ${r} ${r} 0 1 1 ${r} 0 A ${r} ${r} 0 1 1 -${r} 0 A ${r} ${r} 0 1 1 ${r} 0`
-}
-
-    </script>
-    <script type="text/javascript">
-
-
-// full screen video : https://www.youtube.com/watch?v=deuhXlqHB9I
-    </script>
     <style>
 
 @font-face {
@@ -116,22 +27,18 @@ path {
   fill: transparent;
 }
 
-text {
+text, text a {
   font-family: TexGyrScholaRegular;
   fill: white;
+}
+
+text a:hover {
+  fill: black;
 }
 
     </style>
   </head>
   <body>
-    
-<!-- <svg width="100%" height="100%" id="main">
-<text font-family="Arial" font-size="18px" text-anchor="middle">
-    <textPath xlink:href="#text_0_path" startOffset="60%">
-        <tspan dy="-10">HOME</tspan>
-    </textPath>
-</text>
-</svg> -->
 
 <center>
   <svg width="500" height="500">
@@ -139,62 +46,6 @@ text {
     <g transform="translate(200, 300)" id="centre"></g>
   </svg>
 </center>
-<script>
-
-function drawRings(rings, segments) {
-
-  const centreElement = d3.select('#centre')
-
-  const ringsById = {}
-  for (let ring of rings){
-    ringsById[ring.id] = ring
-  }
-
-  for (let segment of segments) {
-    segment.startAngle = parseInt(segment.startAngle)
-    segment.endAngle = parseInt(segment.endAngle)
-  }
-
-  centreElement.selectAll('path.ring')
-    .data(rings)
-    .enter()
-    .append('path')
-    .attr('class', 'ring')
-    .attr('d', (ring) => circularPath(ring.radius))
-    .attr('id', (ring) => `ring_${ring.id}`)
-
-  const text = centreElement.selectAll('text')
-    .data(segments)
-    .enter()
-    .append('text')
-    .style('font-size', (segment) => ringsById[segment.ring].fontSize)
-    .attr('text-anchor', 'middle')
-    
-  text.append('textPath')
-    .attr('xlink:href', (segment) => `#ring_${segment.ring}`)
-    .attr('startOffset', (s) => `${100*((s.startAngle + s.endAngle)/2+90)/540}%`)
-    .append('tspan')
-    .attr('dy', '-10')
-    .text((segment) => segment.text)
-
-}
-
-window.onload = function() { init() };
-
-const url = 'https://docs.google.com/spreadsheets/d/1vSDKHJxiHHFtiC67EBUjIazqPAYpdORO6iDq6PPBHpE/pubhtml'
-
-function init() {
-  Tabletop.init( { key: url,
-                   callback: showInfo,
-                   simpleSheet: false } )
-}
-
-function showInfo(data, tabletop) {
-  drawRings(data.rings.elements, data.segments.elements)
-}
-
-
-</script>
-
+  <script src="js/ledbib.js"></script>
   </body>
 </html>
