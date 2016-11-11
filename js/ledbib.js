@@ -7,12 +7,17 @@ e.g. M -100 0 A 100 100 0 1 1 100 0 A 100 100 0 1 1 -100 0 (for radius == 100)
 */
 function circularPath(radius) {
   const r = radius
-  return `M -${r} 0 A ${r} ${r} 0 1 1 ${r} 0 A ${r} ${r} 0 1 1 -${r} 0 A ${r} ${r} 0 1 1 ${r} 0`
+  return `M -${r} 0 A ${r} ${r} 0 1 1 ${r} 0 A ${r} ${r} 0 1 1 -${r} 0 A ${r} ${r} 0 1 1 ${r} 0 A ${r} ${r} 0 1 1 -${r} 0`
 }
 
 function drawRings(rings, segments) {
 
   const centreElement = d3.select('#centre')
+    .append('g')
+
+  window.centreElement = centreElement
+
+  centreElement.attr('transform','translate(0,0) scale(1) rotate(0)')
 
   const ringsById = {}
   for (let ring of rings){
@@ -44,10 +49,19 @@ function drawRings(rings, segments) {
   a.filter((s) => s.link)
     .attr('href', (segment) => segment.link)
     .attr('target', '_new')
+
+  a.filter((s) => !s.link)
+    .style('cursor', 'pointer')
+    .on('click', () => {
+      centreElement
+        .transition()
+        .duration(1000)
+        .attr('transform','translate(-100,-100) scale(0.4) rotate(180)')
+    })
     
   a.append('textPath')
     .attr('xlink:href', (segment) => `#ring_${segment.ring}`)
-    .attr('startOffset', (s) => `${100*((s.startAngle + s.endAngle)/2+90)/540}%`)
+    .attr('startOffset', (s) => `${100*((s.startAngle + s.endAngle)/2+90)/720}%`)
     .append('tspan')
     .attr('dy', '-10')
     .text((segment) => segment.text)
