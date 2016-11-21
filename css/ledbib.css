@@ -1,7 +1,7 @@
 body, html {
     margin: 0px;
     padding: 0px;
-    background-color: black;
+    background-color: gray;
     font-family: Times;
     font-weight: bold;
     width: 100%;
@@ -21,7 +21,6 @@ svg, #main, #wrapper {
     width: 100%;
 }
 
-
 circle {
   stroke: white;
   fill: transparent;
@@ -37,6 +36,43 @@ text, text a {
   fill: white;
 }
 
-text a:hover {
-  fill: black;
+#logo path, #logo rect, #logo circle {
+  fill: white;
+  stroke: transparent;
+  cursor: pointer;
+}
+
+text a:hover, text a.selected, #logo:hover path, #logo:hover rect {
+  fill: #ee7395;
+}
+
+.videoBgWrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+.videoBg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+@media (min-aspect-ratio: 16/9) {
+  .videoBg{
+    width: 100%;
+    height: auto;
+  }
+}
+@media (max-aspect-ratio: 16/9) {
+  .videoBg {
+    width: auto;
+    height: 100%;
+  }
 }

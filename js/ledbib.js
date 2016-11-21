@@ -13,11 +13,83 @@ function circularPath(radius) {
 function drawRings(rings, segments) {
 
   const centreElement = d3.select('#centre')
-    .append('g')
 
   window.centreElement = centreElement
 
-  centreElement.attr('transform','translate(0,0) scale(1) rotate(0)')
+  function clickHandler(d) {
+    var svg = d3.select('svg').node()
+    var scaler = d3.select('#scaler').node()
+    var scale = scaler.getBoundingClientRect().width / scaler.getBBox().width
+    var h = svg.clientHeight / scale
+    var w = svg.clientWidth / scale
+
+    window.centreElement = centreElement
+    window.svg = svg
+    window.h = h
+    window.w = w
+
+    var angle = (d.startAngle + d.endAngle) / 2
+
+    a.classed('selected', (e) => e == d)
+
+    centreElement
+      .transition()
+      .duration(1000)
+      .attr('transform',`translate(${-w/2+90},${-h/2+90}) scale(0.4) rotate(${-angle})`)
+
+    d3.select('#logoRotator')
+      .transition()
+      .duration(6000)
+      .delay(400)
+      .ease(d3.easeElastic.period(0.3))
+      .attr('transform',`rotate(${angle})`)
+
+    d3.select('#content')
+      .transition()
+      .duration(1000)
+      .style('opacity', 1)
+
+
+    var src = d.text.toLowerCase() + '.html'
+
+    d3.select('#content iframe')
+      .attr('src', src)
+
+    d3.select('#content')
+      .style('display', 'block')
+      .transition()
+      .duration(1000)
+      .style('opacity', 1)
+
+
+  }
+
+  function homeHandler(){
+
+    a.classed('selected', false)
+
+    centreElement
+      .transition()
+      .duration(1000)
+      .attr('transform',`translate(0, 0) scale(1) rotate(0)`)
+
+    d3.select('#logoRotator')
+      .transition()
+      .duration(6000)
+      .delay(400)
+      .ease(d3.easeElastic.period(0.3))
+      .attr('transform',`rotate(0)`)
+
+    d3.select('#content')
+      .transition()
+      .duration(1000)
+      .style('opacity', 0)
+      .transition()
+      .style('display', 'none')
+
+
+  }
+
 
   const ringsById = {}
   for (let ring of rings){
@@ -29,7 +101,7 @@ function drawRings(rings, segments) {
     segment.endAngle = parseInt(segment.endAngle)
   }
 
-  centreElement.selectAll('path.ring')
+  centreElement.select('#rings').selectAll('path.ring')
     .data(rings)
     .enter()
     .append('path')
@@ -52,12 +124,7 @@ function drawRings(rings, segments) {
 
   a.filter((s) => !s.link)
     .style('cursor', 'pointer')
-    .on('click', () => {
-      centreElement
-        .transition()
-        .duration(1000)
-        .attr('transform','translate(-100,-100) scale(0.4) rotate(180)')
-    })
+    .on('click', clickHandler)
     
   a.append('textPath')
     .attr('xlink:href', (segment) => `#ring_${segment.ring}`)
@@ -66,19 +133,20 @@ function drawRings(rings, segments) {
     .attr('dy', '-10')
     .text((segment) => segment.text)
 
+  d3.select('#logo')
+    .on('click', homeHandler)
+
 }
 
 const url = 'https://docs.google.com/spreadsheets/d/1vSDKHJxiHHFtiC67EBUjIazqPAYpdORO6iDq6PPBHpE/pubhtml'
 
-$('document').ready(function() {
-  var options = { videoId: 'deuhXlqHB9I', start: 0 };
-  $('#wrapper').tubular(options);
+function init() {
 
   Tabletop.init( { key: url,
                    callback: showInfo,
                    simpleSheet: false } )
 
-})
+}
 
 
 function showInfo(data, tabletop) {
