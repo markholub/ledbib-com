@@ -56,11 +56,11 @@ function drawRings(rings, segments) {
       .attr('src', src)
 
     d3.select('#content')
+      .style('opacity', 0)
       .style('display', 'block')
       .transition()
       .duration(1000)
       .style('opacity', 1)
-
 
   }
 
@@ -86,10 +86,7 @@ function drawRings(rings, segments) {
       .style('opacity', 0)
       .transition()
       .style('display', 'none')
-
-
   }
-
 
   const ringsById = {}
   for (let ring of rings){
@@ -138,21 +135,8 @@ function drawRings(rings, segments) {
 
 }
 
-const url = 'https://docs.google.com/spreadsheets/d/1vSDKHJxiHHFtiC67EBUjIazqPAYpdORO6iDq6PPBHpE/pubhtml'
-
 function init() {
-
-  Tabletop.init( { key: url,
-                   callback: showInfo,
-                   simpleSheet: false } )
-
-}
-
-
-function showInfo(data, tabletop) {
-  drawRings(data.rings.elements, data.segments.elements)
-
-  window.data = data
-  console.log('data', data)
-
+  d3.json('./js/rings-and-segments.json', function(data){
+    drawRings(data.rings, data.segments)
+  })
 }

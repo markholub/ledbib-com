@@ -2,9 +2,8 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <title>Led Bib</title>
-
+  <link rel="shortcut icon" href="images/logo.png" type="image/x-icon">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.8/d3.min.js"></script>
-  <script src="js/tabletop.js"></script>
   <script src="js/ledbib.js"></script>
 
   <link rel="stylesheet" type="text/css" href="css/ledbib.css" />
@@ -17,16 +16,15 @@
     </video>
   </div>
 
-  <div id="wrapper">
-    <div id="main">
-      <svg xmlns="http://www.w3.org/2000/svg" 
-          xmlns:xlink="http://www.w3.org/1999/xlink" 
-          preserveAspectRatio="xMidYMid" viewBox="0 0 400 600">
-        <rect width="100" height="100" id="scaler" style="visibility:hidden"></rect>
-        <g transform="translate(200, 300)">
-          <g id="centre" transform="translate(0,0) scale(1) rotate(0)">
-          
-            <g id="rings"></g>
+  <div id="rings" id="content">
+    <svg xmlns="http://www.w3.org/2000/svg" 
+        xmlns:xlink="http://www.w3.org/1999/xlink" 
+        preserveAspectRatio="xMidYMid" viewBox="0 0 400 600">
+      <rect width="100" height="100" id="scaler" style="visibility:hidden"></rect>
+      <g transform="translate(200, 300)">
+        <g id="centre" transform="translate(0,0) scale(1) rotate(0)">
+        
+          <g id="rings"></g>
             <g id="logoRotator">
              <g id="logo" transform="translate(-104, -104) scale(0.35)">
 
@@ -69,17 +67,16 @@
               </g>
             </g>
           </g>
-
-          </g>
         </g>
-      </svg>
-    </div> 
-    <center>
-    <div id="content" style="text-align:left;width:500px;padding-top:200px;height:600px;opacity:0;display:none">
-<iframe src="live.html" frameborder="0" style="width:100%"></iframe>
-               </div>
-    </center>
+      </g>
+    </svg>
   </div> 
+
+  <div id="content" style="display:none">
+    <iframe src="live.html" frameborder="0" 
+      style="width:100%;height:100%"></iframe>
+  </div>
+
 
 </body>
 </html>

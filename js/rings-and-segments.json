@@ -1,0 +1,112 @@
+{
+  "rings" : [
+    {
+      "id": "1",
+      "fontSize": "14px",
+      "radius": "100"
+    },
+    {
+      "id": "2",
+      "fontSize": "20px",
+      "radius": "130"
+    },
+    {
+      "id": "3",
+      "fontSize": "20px",
+      "radius": "170"
+    }
+  ],
+  "segments" : [
+    {
+      "ring": "1",
+      "text": "FACEBOOK",
+      "startAngle": "20",
+      "endAngle": "110",
+      "link": "https://www.facebook.com/ledbib"
+    },
+    {
+      "ring": "1",
+      "text": "TWITTER",
+      "startAngle": "110",
+      "endAngle": "170",
+      "link": "http://www.twitter.com/ledbib"
+    },
+    {
+      "ring": "1",
+      "text": "YOUTUBE",
+      "startAngle": "170",
+      "endAngle": "230",
+      "link": "http://www.youtube.com/ledbib"
+    },
+    {
+      "ring": "1",
+      "text": "SOUNDCLOUD",
+      "startAngle": "250",
+      "endAngle": "290",
+      "link": "http://www.soundcloud.com/ledbib"
+    },
+    {
+      "ring": "1",
+      "text": "INSTAGRAM",
+      "startAngle": "340",
+      "endAngle": "360",
+      "link": "http://www.instagram.com/ledbib"
+    },
+    {
+      "ring": "2",
+      "text": "CONTACT",
+      "startAngle": "310",
+      "endAngle": "340",
+      "link": ""
+    },
+    {
+      "ring": "2",
+      "text": "LIVE",
+      "startAngle": "-20",
+      "endAngle": "30",
+      "link": ""
+    },
+    {
+      "ring": "2",
+      "text": "ABOUT",
+      "startAngle": "30",
+      "endAngle": "50",
+      "link": ""
+    },
+    {
+      "ring": "2",
+      "text": "PRESS",
+      "startAngle": "60",
+      "endAngle": "90",
+      "link": ""
+    },
+    {
+      "ring": "2",
+      "text": "LISTEN",
+      "startAngle": "95",
+      "endAngle": "135",
+      "link": ""
+    },
+    {
+      "ring": "2",
+      "text": "WATCH",
+      "startAngle": "140",
+      "endAngle": "180",
+      "link": ""
+    },
+    {
+      "ring": "2",
+      "text": "PHOTOS",
+      "startAngle": "180",
+      "endAngle": "230",
+      "link": ""
+    },
+    {
+      "ring": "2",
+      "text": "MAILING LIST",
+      "startAngle": "240",
+      "endAngle": "290",
+      "link": "http://eepurl.com/klBSv"
+    }
+  ]
+}
