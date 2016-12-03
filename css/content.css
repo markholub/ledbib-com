@@ -2,11 +2,11 @@ body, html {
   margin: 0px;
   padding: 0px;
   background-color:rgba(0,0,0,0.5);
-  font-family: Century, georgia, serif; colour:White;
+  font-family: Century,
+  color: white;
   width: 100%;
   height: 100%
-  color: white
-}
+  }
 a:link {
   color: red;
 }
