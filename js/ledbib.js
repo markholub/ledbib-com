@@ -20,13 +20,10 @@ function drawRings(rings, segments) {
     var svg = d3.select('svg').node()
     var scaler = d3.select('#scaler').node()
     var scale = scaler.getBoundingClientRect().width / scaler.getBBox().width
-    var h = svg.clientHeight / scale
-    var w = svg.clientWidth / scale
-
-    window.centreElement = centreElement
-    window.svg = svg
-    window.h = h
-    window.w = w
+    
+    var rect = svg.getBoundingClientRect()
+    var h = rect.height / scale
+    var w = rect.width / scale
 
     var angle = (d.startAngle + d.endAngle) / 2
 
@@ -48,7 +45,6 @@ function drawRings(rings, segments) {
       .transition()
       .duration(1000)
       .style('opacity', 1)
-
 
     var src = d.text.toLowerCase() + '.html'
 
