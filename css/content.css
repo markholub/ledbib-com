@@ -5,10 +5,11 @@ body, html {
   font-family: Century, georgia, serif;
   width: 100%;
   height: 100%
+  color: white
 }
     a:link {
   color: red;
-
+}
   a:link {
   color: red;
 }
