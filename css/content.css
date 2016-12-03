@@ -8,8 +8,9 @@ body, html {
   width: 100%;
   height: 100%;
 }
-a:link {
-    color: red;
+a:link 
+{color: red;
 }
-A:hover {color : green
+A:hover 
+{color: green;
 }
