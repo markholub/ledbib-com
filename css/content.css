@@ -7,7 +7,9 @@ body, html {
   height: 100%
   color: white
 }
-    a:link {
+h1 {
+  color: white;}
+a:link {
   color: red;
 }
   a:link {
