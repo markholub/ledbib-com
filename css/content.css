@@ -1,16 +1,15 @@
 body, html {
   margin: 0px;
   padding: 0px;
-  background-color: red;
+  background-color: black;
+  opacity: 0.5;
   font-family: Century, georgia, serif;
   font-weight: bold;
   width: 100%;
   height: 100%;
 }
-TD {
-    font-family: century, georgia, serif;
+a:link {
+    color: red;
 }
-A {color: black
-}
-A:hover {color : red
+A:hover {color : green
 }
