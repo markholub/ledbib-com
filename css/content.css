@@ -1,1 +1,11 @@
+BODY {
+   font-family: century, georgia, serif;
+}
 
+TD {
+    font-family: century, georgia, serif;
+}
+A {color: black
+}
+A:hover {color : red
+}
