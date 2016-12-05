@@ -10,7 +10,7 @@ div#content {
   margin-bottom: 100px;
   margin-right: 250px;
   background-color:rgba(0,0,0,0.3);
-  height: 100%;
+  min-height: 100%;
   color: white;
   padding: 10px;
   font-family: Georgia;
