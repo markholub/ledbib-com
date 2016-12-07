@@ -55,7 +55,7 @@ text, text a {
   cursor: pointer;
 }
 
-text a:hover, text a.selected, #logo:hover path, #logo:hover rect {
+a:hover text, a.selected text, #logo:hover path, #logo:hover rect {
   fill: #ee7395;
 }
 
@@ -76,13 +76,13 @@ text a:hover, text a.selected, #logo:hover path, #logo:hover rect {
     height: 100%;
 }
 
-
 @media (min-aspect-ratio: 16/9) {
   .videoBg{
     width: 100%;
     height: auto;
   }
 }
+
 @media (max-aspect-ratio: 16/9) {
   .videoBg {
     width: auto;
