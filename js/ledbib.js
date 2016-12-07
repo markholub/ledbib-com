@@ -16,6 +16,10 @@ function drawRings(rings, segments) {
 
   window.centreElement = centreElement
 
+  function linkHandler(d){
+    window.open(d.link)
+  }
+
   function clickHandler(d) {
     var svg = d3.select('svg').node()
     var scaler = d3.select('#scaler').node()
@@ -102,24 +106,24 @@ function drawRings(rings, segments) {
     .attr('d', (ring) => circularPath(ring.radius))
     .attr('id', (ring) => `ring_${ring.id}`)
 
-  const text = centreElement.selectAll('text')
+  const a = centreElement.selectAll('a')
     .data(segments)
     .enter()
-    .append('text')
+    .append('a')
+
+  const text = a.append('text')
     .style('font-size', (segment) => ringsById[segment.ring].fontSize)
     .attr('text-anchor', 'middle')
 
-  const a = text.append('a')
-
   a.filter((s) => s.link)
-    .attr('href', (segment) => segment.link)
-    .attr('target', '_new')
+    .style('cursor', 'pointer')
+    .on('click', linkHandler)
 
   a.filter((s) => !s.link)
     .style('cursor', 'pointer')
     .on('click', clickHandler)
     
-  a.append('textPath')
+  text.append('textPath')
     .attr('xlink:href', (segment) => `#ring_${segment.ring}`)
     .attr('startOffset', (s) => `${100*((s.startAngle + s.endAngle)/2+90)/720}%`)
     .append('tspan')
