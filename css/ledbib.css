@@ -27,6 +27,8 @@ svg, #main {
   top: 0px;
   width: calc(100% - 250px);
   height: 100%;
+  -webkit-overflow-scrolling: touch;
+  overflow-y: scroll;
 }
 
 /* different width and top padding for mobiles */
@@ -36,6 +38,7 @@ svg, #main {
     left: 10px;
     top: 400px;
     height: calc(100% - 400px);
+    
   }
 }
 
