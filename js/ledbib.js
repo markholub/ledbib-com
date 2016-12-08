@@ -98,18 +98,20 @@ function drawRings(rings, segments) {
     segment.endAngle = parseInt(segment.endAngle)
   }
 
-  centreElement.select('#rings').selectAll('path.ring')
+  const ringElements = centreElement.select('#rings').selectAll('path.ring')
     .data(rings)
     .enter()
     .append('path')
     .attr('class', 'ring')
     .attr('d', (ring) => circularPath(ring.radius))
     .attr('id', (ring) => `ring_${ring.id}`)
+    .style('opacity', 0)
 
   const a = centreElement.selectAll('a')
     .data(segments)
     .enter()
     .append('a')
+    .style('opacity', 0)
 
   const text = a.append('text')
     .style('font-size', (segment) => ringsById[segment.ring].fontSize)
@@ -132,6 +134,15 @@ function drawRings(rings, segments) {
 
   d3.select('#logo')
     .on('click', homeHandler)
+
+  ringElements.transition()
+    .duration(1000)
+    .style('opacity', 1)
+
+  a.transition()
+    .duration(1000)
+    .delay(1000)
+    .style('opacity', 1)
 
 }
 
