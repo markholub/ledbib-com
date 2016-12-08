@@ -147,6 +147,9 @@ function drawRings(rings, segments) {
 }
 
 function init() {
+
+  document.getElementById('video1').playbackRate = 0.5;
+
   d3.json('./js/rings-and-segments.json', function(data){
     drawRings(data.rings, data.segments)
   })
