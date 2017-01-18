@@ -31,7 +31,7 @@ function drawRings(rings, segments) {
 
     var angle = (d.startAngle + d.endAngle) / 2
 
-    a.classed('selected', (e) => e == d)
+    a.classed('selected', function(e){return e == d})
 
     centreElement
       .transition()
@@ -89,22 +89,23 @@ function drawRings(rings, segments) {
   }
 
   const ringsById = {}
-  for (let ring of rings){
-    ringsById[ring.id] = ring
-  }
 
-  for (let segment of segments) {
+  rings.forEach(function(ring){
+    ringsById[ring.id] = ring
+  })
+
+  segments.forEach(function(segment){
     segment.startAngle = parseInt(segment.startAngle)
     segment.endAngle = parseInt(segment.endAngle)
-  }
+  })
 
   const ringElements = centreElement.select('#rings').selectAll('path.ring')
     .data(rings)
     .enter()
     .append('path')
     .attr('class', 'ring')
-    .attr('d', (ring) => circularPath(ring.radius))
-    .attr('id', (ring) => `ring_${ring.id}`)
+    .attr('d', function(ring){ return circularPath(ring.radius) })
+    .attr('id', function(ring){ return 'ring_' + ring.id})
     .style('opacity', 0)
 
   const a = centreElement.selectAll('a')
@@ -114,23 +115,25 @@ function drawRings(rings, segments) {
     .style('opacity', 0)
 
   const text = a.append('text')
-    .style('font-size', (segment) => ringsById[segment.ring].fontSize)
+    .style('font-size', function(segment) { 
+      return ringsById[segment.ring].fontSize
+    })
     .attr('text-anchor', 'middle')
 
-  a.filter((s) => s.link)
+  a.filter(function(s){ return s.link })
     .style('cursor', 'pointer')
     .on('click', linkHandler)
 
-  a.filter((s) => !s.link)
+  a.filter(function(s){ return !s.link })
     .style('cursor', 'pointer')
     .on('click', clickHandler)
     
   text.append('textPath')
-    .attr('xlink:href', (segment) => `#ring_${segment.ring}`)
-    .attr('startOffset', (s) => `${100*((s.startAngle + s.endAngle)/2+90)/720}%`)
+    .attr('xlink:href', function(segment){ return '#ring_' + segment.ring })
+    .attr('startOffset', function(s){ return 100*((s.startAngle + s.endAngle)/2+90)/720 + '%'})
     .append('tspan')
     .attr('dy', '-10')
-    .text((segment) => segment.text)
+    .text( function(segment) { return segment.text })
 
   d3.select('#logo')
     .on('click', homeHandler)
