@@ -10,58 +10,61 @@ function circularPath(radius) {
   return `M -${r} 0 A ${r} ${r} 0 1 1 ${r} 0 A ${r} ${r} 0 1 1 -${r} 0 A ${r} ${r} 0 1 1 ${r} 0 A ${r} ${r} 0 1 1 -${r} 0`
 }
 
+function clickHandler(d) {
+
+  const centreElement = d3.select('#centre')
+  const a = centreElement.selectAll('a')
+
+  var svg = d3.select('svg').node()
+  var scaler = d3.select('#scaler').node()
+  var scale = scaler.getBoundingClientRect().width / scaler.getBBox().width
+  
+  var rect = svg.getBoundingClientRect()
+  var h = rect.height / scale
+  var w = rect.width / scale
+
+  var angle = (d.startAngle + d.endAngle) / 2
+
+  a.classed('selected', function(e){return e == d})
+
+  centreElement
+    .transition()
+    .duration(1000)
+    .attr('transform',`translate(${-w/2+90},${-h/2+90}) scale(0.4) rotate(${-angle})`)
+
+  d3.select('#logoRotator')
+    .transition()
+    .duration(6000)
+    .delay(400)
+    .ease(d3.easeElastic.period(0.3))
+    .attr('transform',`rotate(${angle})`)
+
+  d3.select('#content')
+    .transition()
+    .duration(1000)
+    .style('opacity', 1)
+
+  var src = d.text.toLowerCase() + '.html'
+
+  d3.select('#content iframe').node().contentWindow.location.replace(src)
+
+  d3.select('#content')
+    .style('opacity', 0)
+    .style('display', 'block')
+    .transition()
+    .duration(1000)
+    .style('opacity', 1)
+
+}
+
+
+
 function drawRings(rings, segments) {
 
   const centreElement = d3.select('#centre')
 
-  window.centreElement = centreElement
-
   function linkHandler(d){
     window.open(d.link)
-  }
-
-  function clickHandler(d) {
-    var svg = d3.select('svg').node()
-    var scaler = d3.select('#scaler').node()
-    var scale = scaler.getBoundingClientRect().width / scaler.getBBox().width
-    
-    var rect = svg.getBoundingClientRect()
-    var h = rect.height / scale
-    var w = rect.width / scale
-
-    var angle = (d.startAngle + d.endAngle) / 2
-
-    a.classed('selected', function(e){return e == d})
-
-    centreElement
-      .transition()
-      .duration(1000)
-      .attr('transform',`translate(${-w/2+90},${-h/2+90}) scale(0.4) rotate(${-angle})`)
-
-    d3.select('#logoRotator')
-      .transition()
-      .duration(6000)
-      .delay(400)
-      .ease(d3.easeElastic.period(0.3))
-      .attr('transform',`rotate(${angle})`)
-
-    d3.select('#content')
-      .transition()
-      .duration(1000)
-      .style('opacity', 1)
-
-    var src = d.text.toLowerCase() + '.html'
-
-    d3.select('#content iframe')
-      .attr('src', src)
-
-    d3.select('#content')
-      .style('opacity', 0)
-      .style('display', 'block')
-      .transition()
-      .duration(1000)
-      .style('opacity', 1)
-
   }
 
   function homeHandler(){
@@ -122,11 +125,17 @@ function drawRings(rings, segments) {
 
   a.filter(function(s){ return s.link })
     .style('cursor', 'pointer')
-    .on('click', linkHandler)
+    .on('click', function(d){
+      window.location.hash = d.text.toLowerCase()
+      linkHandler(d)
+    })
 
   a.filter(function(s){ return !s.link })
     .style('cursor', 'pointer')
-    .on('click', clickHandler)
+    .on('click', function(d){
+      window.location.hash = d.text.toLowerCase()
+      //clickHandler(d)
+    })
     
   text.append('textPath')
     .attr('xlink:href', function(segment){ return '#ring_' + segment.ring })
@@ -150,10 +159,25 @@ function drawRings(rings, segments) {
 }
 
 function init() {
-
   document.getElementById('video1').playbackRate = 0.5;
-
   d3.json('./js/rings-and-segments.json', function(data){
     drawRings(data.rings, data.segments)
+    function checkHash(e) {
+      if (e) {
+        e.preventDefault()
+      }
+      var name = window.location.hash.split('#').pop().toUpperCase()
+      if (name.length) {
+        var segment = data.segments.filter(function(segment){
+          return segment.text == name
+        })
+        if (segment.length) {
+          segment = segment[0]
+          clickHandler(segment)
+        }
+      }
+    }
+    checkHash()
+    window.addEventListener("popstate", checkHash)
   })
 }
