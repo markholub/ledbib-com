@@ -12,6 +12,10 @@ function circularPath(radius) {
 
 function clickHandler(d) {
 
+  if (d.link && d.link.length > 0){
+    return
+  }
+  
   const centreElement = d3.select('#centre')
   const a = centreElement.selectAll('a')
 
