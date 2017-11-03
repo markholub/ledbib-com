@@ -20,8 +20,8 @@
     {
       "ring": "1",
       "text": "FACEBOOK",
-      "startAngle": "10",
-      "endAngle": "70",
+      "startAngle": "360",
+      "endAngle": "60",
       "link": "https://www.facebook.com/ledbib"
     },
      {
@@ -48,15 +48,15 @@
     {
       "ring": "1",
       "text": "SOUNDCLOUD",
-      "startAngle": "250",
-      "endAngle": "290",
+      "startAngle": "260",
+      "endAngle": "300",
       "link": "http://www.soundcloud.com/ledbib"
     },
     {
       "ring": "1",
       "text": "INSTAGRAM",
-      "startAngle": "340",
-      "endAngle": "360",
+      "startAngle": "330",
+      "endAngle": "350",
       "link": "http://www.instagram.com/ledbib"
     },
     {
