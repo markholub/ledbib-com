@@ -20,7 +20,14 @@
     {
       "ring": "1",
       "text": "FACEBOOK",
-      "startAngle": "20",
+      "startAngle": "10",
+      "endAngle": "70",
+      "link": "https://www.facebook.com/ledbib"
+    },
+     {
+      "ring": "1",
+      "text": "BANDCAMP",
+      "startAngle": "70",
       "endAngle": "110",
       "link": "https://www.facebook.com/ledbib"
     },
