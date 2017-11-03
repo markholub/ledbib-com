@@ -34,29 +34,29 @@
     {
       "ring": "1",
       "text": "TWITTER",
-      "startAngle": "110",
-      "endAngle": "170",
+      "startAngle": "120",
+      "endAngle": "180",
       "link": "http://www.twitter.com/ledbib"
     },
     {
       "ring": "1",
       "text": "YOUTUBE",
-      "startAngle": "170",
+      "startAngle": "180",
       "endAngle": "230",
       "link": "http://www.youtube.com/ledbib"
     },
     {
       "ring": "1",
       "text": "SOUNDCLOUD",
-      "startAngle": "260",
-      "endAngle": "300",
+      "startAngle": "250",
+      "endAngle": "290",
       "link": "http://www.soundcloud.com/ledbib"
     },
     {
       "ring": "1",
       "text": "INSTAGRAM",
-      "startAngle": "330",
-      "endAngle": "350",
+      "startAngle": "320",
+      "endAngle": "340",
       "link": "http://www.instagram.com/ledbib"
     },
     {
